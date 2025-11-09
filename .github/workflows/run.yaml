@@ -1,0 +1,26 @@
+name: AI Feed Agent
+on:
+  schedule:
+    - cron: "0 6 */2 * *"   # every 2 days at 6 AM UTC
+  workflow_dispatch:        # allow manual run
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Agent
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
+        run: python ai_feed_agent.py

@@ -1,0 +1,8 @@
+snscrape==0.4.4.20230110
+beautifulsoup4==4.12.2
+requests==2.31.0
+python-dotenv==1.0.0
+notion-client==0.6.0
+PyYAML==6.0
+python-dateutil==2.8.2
+tqdm==4.65.0

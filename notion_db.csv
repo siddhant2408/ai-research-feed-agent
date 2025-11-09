@@ -1,0 +1,11 @@
+Domain,Startup / Entity,Description,Business Model,Tech Used,Social Links,Advancements,Tweet Link,Tweet Date,Author Handle,Source Links,Funding / Partnerships,Ingested At,Unique ID,Confidence
+Generative AI,,,,"Transformers / LLMs | Diffusion Models | Vector Databases",,,,"",,,"","",,""
+Computer Vision,,,,"Image Processing | Object Detection",,,,"",,,"","",,""
+Natural Language Processing,,,,"Transformers / LLMs | Retrieval-Augmented Generation",,,,"",,,"","",,""
+MLOps / Dev Tools,,,,"MLOps Stack | Monitoring | Observability",,,,"",,,"","",,""
+AI Infrastructure,,,,"GPU Acceleration | Inference Optimization | Custom Models",,,,"",,,"","",,""
+Robotics,,,,"Autonomous Systems | Control | Sensors",,,,"",,,"","",,""
+Healthcare AI,,,,"Diagnostics | Clinical Data | Foundation Models",,,,"",,,"","",,""
+Fintech AI,,,,"Fraud Detection | Risk Modeling | LLM Automation",,,,"",,,"","",,""
+Research & Academia,,,,"Academic Paper | arXiv | Novel Algorithm",,,,"",,,"","",,""
+Other,,,,"Miscellaneous | General AI | Uncategorized",,,,"",,,"","",,""
