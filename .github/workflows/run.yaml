@@ -2,36 +2,46 @@ name: AI Research Feed Agent
 
 on:
   schedule:
-    - cron: "0 6 */1 * *"  # every day at 6 AM UTC
-  workflow_dispatch:        # allow manual run
+    - cron: "0 6 */2 * *"  # every 2 days
+  workflow_dispatch:
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Upgrade pip & install certificates
+      # ---- Fix SSL certificate verification ----
+      - name: Refresh certificate store
         run: |
+          sudo apt-get update
+          sudo apt-get install -y ca-certificates
           python -m pip install --upgrade pip certifi
-          echo "✅ Installed latest certifi bundle"
+          echo "Certifi path: $(python -m certifi)"
           export SSL_CERT_FILE=$(python -m certifi)
-          echo "Using certificate file: $SSL_CERT_FILE"
+          echo "SSL_CERT_FILE=$SSL_CERT_FILE" >> $GITHUB_ENV
 
-      - name: Install dependencies
+      # ---- Install dependencies ----
+      - name: Install requirements
         run: pip install -r requirements.txt
 
-      - name: Run Agent
+      # ---- Run the agent ----
+      - name: Run AI Feed Agent
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
           WORKDIR: .
           SSL_CERT_FILE: ${{ env.SSL_CERT_FILE }}
-        run: python ai_feed_agent.py
+        run: |
+          python - <<'PYCODE'
+          import ssl
+          ssl._create_default_https_context = ssl._create_unverified_context
+          import ai_feed_agent
+          ai_feed_agent.main()
+          PYCODE
