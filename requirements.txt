@@ -1,8 +1,15 @@
-snscrape==0.4.4.20230110
-beautifulsoup4==4.12.2
-requests==2.31.0
-python-dotenv==1.0.0
-notion-client==0.6.0
-PyYAML==6.0
-python-dateutil==2.8.2
-tqdm==4.65.0
+# --- Core scraper & parsing ---
+snscrape==0.7.0.20230622        # latest stable on PyPI
+beautifulsoup4==4.12.3          # HTML parser
+requests==2.32.3                # latest LTS version (security-patched)
+
+# --- Environment & config ---
+python-dotenv==1.0.1            # loads .env variables
+PyYAML==6.0.2                   # modern YAML parsing
+python-dateutil==2.9.0.post0    # for datetime parsing
+
+# --- Notion API client ---
+notion-client==2.2.1            # maintained fork; supports Notion API v2023-11
+
+# --- Utilities ---
+tqdm==4.66.5                    # progress bars
